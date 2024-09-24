@@ -17,8 +17,8 @@ public interface PieceMoveCalculator {
         return board.getPiece(position) == null;
     }
     public default boolean canCapture(ChessBoard board, ChessPosition startPosition, ChessPosition endPosition){
-        if(board.getPiece(startPosition) != null){
-            return board.getPiece(startPosition).getTeamColor() != board.getPiece(endPosition).getTeamColor();
+        if(board.getPiece(endPosition) != null){
+            if(isInBounds(endPosition)){ return board.getPiece(startPosition).getTeamColor() != board.getPiece(endPosition).getTeamColor(); }
         }
         return false;
     }
