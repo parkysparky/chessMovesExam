@@ -15,7 +15,7 @@ public class KingMovesCalculator implements PieceMoveCalculator{
                     if(isEmpty(board, endPosition) || canCapture(board, position,endPosition)) {
                         moves.add(new ChessMove(position, endPosition, null));
                     }
-                    if(position.equals(endPosition)){ moves.remove(endPosition); }
+                    if(position.equals(endPosition)){ moves.remove(endPosition); } //can't move to start square
                 }
             }
         }
