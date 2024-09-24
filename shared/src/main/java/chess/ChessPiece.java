@@ -15,7 +15,7 @@ public class ChessPiece {
     private final ChessGame.TeamColor pieceColor;
     private final PieceType type;
 
-    public ChessPiece(ChessGame.TeamColor pieceColor, ChessPiece.PieceType type) {
+    public ChessPiece(ChessGame.TeamColor pieceColor, PieceType type) {
         this.pieceColor = pieceColor;
         this.type = type;
     }
@@ -55,7 +55,31 @@ public class ChessPiece {
      * @return Collection of valid moves
      */
     public Collection<ChessMove> pieceMoves(ChessBoard board, ChessPosition myPosition) {
-        return new HashSet<>();//implement logic here
+        if(PieceType.KING == board.getPiece(myPosition).getPieceType()){
+            KingMovesCalculator kingMoves = new KingMovesCalculator();
+            return kingMoves.moveCalculator(board, myPosition);
+        }
+        if(PieceType.QUEEN == board.getPiece(myPosition).getPieceType()){
+            QueenMovesCalculator queenMoves = new QueenMovesCalculator();
+            return queenMoves.moveCalculator(board, myPosition);
+        }
+        if(PieceType.ROOK == board.getPiece(myPosition).getPieceType()){
+            RookMovesCalculator rookMoves = new RookMovesCalculator();
+            return rookMoves.moveCalculator(board, myPosition);
+        }
+        if(PieceType.BISHOP == board.getPiece(myPosition).getPieceType()){
+            BishopMovesCalculator bishopMoves = new BishopMovesCalculator();
+            return bishopMoves.moveCalculator(board, myPosition);
+        }
+        if(PieceType.KNIGHT == board.getPiece(myPosition).getPieceType()){
+            KnightMovesCalculator knightMoves = new KnightMovesCalculator();
+            return knightMoves.moveCalculator(board, myPosition);
+        }
+        if(PieceType.PAWN == board.getPiece(myPosition).getPieceType()){
+            PawnMovesCalculator pawnMoves = new PawnMovesCalculator();
+            return pawnMoves.moveCalculator(board, myPosition);
+        }
+        return null;
     }
 
     @Override
